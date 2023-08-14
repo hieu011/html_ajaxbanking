@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<div lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Banking</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="/assets/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/css/bootstrap.min.css"
+            integrity="sha512-Ez0cGzNzHR1tYAv56860NLspgUGuQw16GiOOp/I2LuTmpSK9xDXlgJz3XN4cnpXWDmkNBKXR/VDMTCnAaEooxA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    </head>
+
+    <div>
+        <div class="container">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h1>List of customers</h1>
+                    </div>
+                    <div class="col-sm-8">
+                        <a href="/customers/create" class="btn btn-outline-light" data-bs-toggle="modal"
+                            data-bs-target="#modalCreate">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Add New Customer</span>
+                        </a>
+                        <a href="/customers/transferInfo" class="btn btn-outline-light">
+                            <i class="fas fa-history" aria-hidden="true"></i>
+                            <span>Transfer Information</span>
+                        </a>
+                        <a href="/customers/withdrawInfo" class="btn btn-outline-light">
+                            <i class="fas fa-history" aria-hidden="true"></i>
+                            <span>WithDraw Information</span>
+                        </a>
+                        <a href="/customers/depositInfo" class="btn btn-outline-light">
+                            <i class="fas fa-history" aria-hidden="true"></i>
+                            <span>Deposit Information</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <table class="table table-hover table-borderless">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            <th>Balance</th>
+                            <th colspan="5" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbCustomer">
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- ADD NEW CUSTOMER -->
+            <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-lg-6">
+                                        <label for="fullname">FullName</label>
+                                        <input type="text" id="fullname" class="form-control">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-6">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" class="form-control">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="address">Address</label>
+                                        <input type="email" id="address" class="form-control">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+
+
+            <!-- EDIT CUSTOMER -->
+            <div id="editCustomer">
+
+            </div>
+            <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row mb-3">
+                                    <div class="col-lg-6">
+                                        <label for="fullname">FullName</label>
+                                        <input type="text" id="fullname" class="form-control">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-6">
+                                        <label for="phone">Phone</label>
+                                        <input type="tel" id="phone" class="form-control">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="address">Address</label>
+                                        <input type="email" id="address" class="form-control">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.bundle.min.js"
+    integrity="sha512-sH8JPhKJUeA9PWk3eOcOl8U+lfZTgtBXD41q6cO/slwxGHCxKcW45K4oPCUhHG7NMB4mbKEddVmPuTXtpbCbFA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const customers = [
+        {
+            "id": 2,
+            "fullName": "Lenore Pruitt",
+            "email": "hucor@mailinator.com",
+            "phone": "+1 (459) 697-6702",
+            "address": "80ntp",
+            "balance": 200000
+        },
+        {
+            "id": 3,
+            "fullName": "Winter Hyde",
+            "email": "qucuwiqy@mailinator.com",
+            "phone": "+1 (518) 692-9872",
+            "address": "80ntp",
+            "balance": 100000
+        }
+    ]
+
+    // Show list customers
+
+    const renderCustomer = (obj) => {
+        return `
+                    <tr>
+                            <td id="idCustomer">${obj.id}</td>
+                            <td>${obj.fullName}</td>
+                            <td>${obj.email}</td>
+                            <td>${obj.phone}</td>
+                            <td>${obj.address}</td>
+                            <td>${obj.balance}</td>
+                            <td class="text-center">
+                                <button title="Edit" class="btn btn-outline-secondary" id="edit" data-bs-toggle="modal" data-bs-target="#modalEdit" onclick="showEditCustomer(${obj.id})"><i class="fas fa-user-edit"></i></button>
+                                <button title="Deposit" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalDeposit"><i class="fas fa-plus"></i></button>
+                                <button title="Withdraw" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalWithdraw"><i class="fas fa-minus"></i></button>
+                                <button title="Transfer" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#modalTransfer"><i class="fas fa-exchange-alt"></i></button>
+                                <button title="delete" class="btn btn-outline-danger"><i class="fas fa-ban"></i></button>
+                            </td>
+                        </tr>
+                    `
+    }
+
+
+
+    const getAllCustomer = () => {
+        document.querySelector('table tbody').innerHTML = '';
+        const count = customers.length;
+        for (let i = 0; i < count; i++) {
+            const str = renderCustomer(customers[i]);
+            document.querySelector('table tbody').innerHTML += str;
+        }       
+    }
+    getAllCustomer();
+    // 
+
+
+    // Edit Customer
+    const showEditCustomer = (id) => {
+        let fullname = document.querySelector('#modalEdit #fullname')
+        let email = document.querySelector('#modalEdit #email')
+        let phone = document.querySelector('#modalEdit #phone')
+        let address = document.querySelector('#modalEdit #address')
+        const count = customers.length;
+        for (let i = 0; i < count; i++) {
+            if (id == customers[i].id){
+                fullname.value = customers[i].fullName;           
+                email.value = customers[i].email;                
+                phone.value = customers[i].phone;
+                address.value = customers[i].address;
+                break;
+            }
+        }
+
+    }
+// 
+
+
+</script>
+</body>
+
+</html>
