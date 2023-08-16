@@ -532,6 +532,7 @@
                                     const provinceId = data.locationRegion.provinceId;
                                     const districtId = infoCustomerUp.locationRegion.districtId;
                                     const wardId = infoCustomerUp.locationRegion.wardId;
+                                    $('#idUp').val(id)
                                     $('#fullNameUp').val(data.fullName)
                                     $('#emailUp').val(data.email)
                                     $('#phoneUp').val(data.phone)
@@ -549,21 +550,21 @@
                                                     break;
                                                 }
                                             }
-                                            const provinceCustomerUp = provinces[indexProvince]                                       
-                                            if (indexProvince  !== -1) {
+                                            const provinceCustomerUp = provinces[indexProvince]
+                                            if (indexProvince !== -1) {
                                                 provinces.splice(indexProvince, 1)
                                                 provinces.unshift(provinceCustomerUp)
-                                            }                                                                               
+                                            }
                                             $('#provinceUp').empty()
                                             $.each(provinces, (index, item) => {
                                                 const str = renderOptionProvince(item);
                                                 $('#provinceUp').append(str);
-                                            })                                         
+                                            })
                                         })
                                         .fail((error) => {
                                             console.log(error);
                                         })
-                                   
+
                                     // District
                                     $.ajax({
                                         url: 'https://vapi.vnappmob.com/api/province/district/' + provinceId
@@ -624,10 +625,9 @@
 
                                     $('#addressUp').val(data.locationRegion.address);
                                     $('#modalUpdate').modal('show');
-
                                 } else {
                                     alert('Say No');
-                                }
+                                }                             
                             })
                             .fail((error) => {
                                 console.log(error);
@@ -749,7 +749,7 @@
                             delay: 2000,
                             align: 'topright'
                         });
-
+                        page.commands.getAllCustomers();
                     })
                     .fail((error) => {
                         console.log(error);
@@ -779,21 +779,33 @@
                 fullName: $('#fullNameUp').val(),
                 email: $('#emailUp').val(),
                 phone: $('#phoneUp').val(),
-                address: $('#addressUp').val()
+                address: $('#addressUp').val(),
+                locationRegion: {
+                    "id": null,
+                    "provinceId": $('#provinceUp').val(),
+                    "provinceName": $('#provinceUp').find('option:selected').text(),
+                    "districtId": $('#districtUp').val(),
+                    "districtName": $('#districtUp').find('option:selected').text(),
+                    "wardId": $('#wardUp').val(),
+                    "wardName": $('#wardUp').find('option:selected').text(),
+                    "address": $('#addressUp').val()
+                },
             }
 
             setTimeout(() => {
                 $.ajax({
                     headers: {
                         'accept': 'application/json',
-                        'conetent-type': 'application/json'
+                        'content-type': 'application/json'
                     },
                     type: 'PATCH',
                     url: 'http://localhost:3300/customers/' + customerId,
-                    data: obj
+                    data: JSON.stringify(obj)
                 })
                     .done((data) => {
                         const str = renderCustomer(data);
+                        console.log(data)
+                        console.log(renderCustomer(data))
                         const currentRow = $('#tr_' + customerId);
                         currentRow.replaceWith(str);
 
@@ -805,7 +817,7 @@
                             delay: 2000,
                             align: 'topright'
                         });
-
+                        page.commands.getAllCustomers()
                     })
                     .fail((error) => {
                         console.log(error);
